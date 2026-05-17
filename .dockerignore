@@ -1,0 +1,14 @@
+venv/
+.venv/
+__pycache__/
+*.pyc
+*.pyo
+.git/
+.gitignore
+*.md
+models/*.pkl
+models/*.pt
+recommendations_export.csv
+*.pdf
+.env
+.env.*

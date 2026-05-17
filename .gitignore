@@ -1,0 +1,57 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.so
+*.egg
+*.egg-info/
+dist/
+build/
+.eggs/
+*.whl
+
+# Virtual environments
+venv/
+.venv/
+env/
+.env/
+
+# Environment variables
+.env
+.env.local
+.env.*.local
+
+# Jupyter
+.ipynb_checkpoints/
+*.ipynb_checkpoints
+
+# Model artifacts (regenerate with train.py)
+models/*.pkl
+models/*.pt
+# Keep metadata.json and directory
+!models/metadata.json
+!models/.gitkeep
+
+# Data — keep committed CSVs for demo, ignore large generated dumps
+data/*.parquet
+data/*.h5
+
+# Exports
+recommendations_export.csv
+
+# IDE / OS
+.vscode/
+.idea/
+*.swp
+*.swo
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+logs/
+
+# ReportLab / PDF build artefacts (the committed PDF is intentional)
+# Uncomment to ignore generated PDFs:
+# *.pdf

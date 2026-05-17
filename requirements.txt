@@ -1,0 +1,12 @@
+streamlit>=1.32
+plotly>=5.20
+prophet>=1.1.5
+torch>=2.0
+scikit-learn>=1.4
+pandas>=2.2
+numpy>=1.26
+joblib>=1.4
+pyyaml>=6.0
+reportlab>=4.0
+# Optional for advanced: neuralprophet, darts
+# For real VPS integration: requests, prometheus-client (example)

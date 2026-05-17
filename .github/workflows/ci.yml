@@ -1,0 +1,40 @@
+name: CI
+
+on:
+  push:
+    branches: ["main", "master"]
+  pull_request:
+    branches: ["main", "master"]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: ["3.11", "3.12"]
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Python ${{ matrix.python-version }}
+        uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python-version }}
+          cache: pip
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      - name: Smoke-test all imports
+        run: |
+          python -c "
+          from src.feature_engineering import create_time_features, add_domain_features
+          from src.forecasting import LSTMForecaster, train_lstm, load_models
+          from src.anomaly_detection import train_anomaly_model, detect_anomalies
+          from src.recommendation import generate_recommendations, format_recs_for_dashboard
+          from src.scaling_executor import execute_recommendation, get_scaling_status
+          print('All imports OK')
+          "
+
+      - name: Run tests
+        run: python -m pytest tests/ -v --tb=short

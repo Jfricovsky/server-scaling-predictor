@@ -1,0 +1,47 @@
+# Server Scaling Predictor Configuration
+project:
+  name: "AI-Powered Server Scaling Predictor"
+  version: "1.0.0"
+  seed: 42
+
+data:
+  synthetic:
+    n_days: 90
+    freq: "H"  # hourly
+    base_players: 120
+    max_capacity_per_server: 250
+    growth_rate: 0.8  # players per day trend
+    anomaly_rate: 0.03  # 3% injected anomalies
+  train_test_split: 0.85  # last 15% for test/forecast eval
+
+models:
+  prophet:
+    seasonality_mode: "multiplicative"
+    changepoint_prior_scale: 0.05
+    seasonality_prior_scale: 10.0
+    holidays_prior_scale: 10.0
+    interval_width: 0.8
+  lstm:
+    seq_length: 48  # 2 days history
+    hidden_size: 64
+    num_layers: 2
+    dropout: 0.2
+    lr: 0.001
+    epochs: 100
+    batch_size: 32
+    early_stopping_patience: 8  # halt if val loss stalls for N epochs
+    grad_clip: 5.0              # max gradient norm (prevents LSTM explosion)
+  anomaly:
+    contamination: 0.03
+    n_estimators: 200  # for IF
+
+recommendation:
+  scale_threshold: 0.82  # % of capacity
+  min_hours_high: 4
+  new_realm_revenue_threshold: 500  # monthly private server revenue estimate
+  alert_channels: ["dashboard", "slack_webhook_placeholder"]
+
+dashboard:
+  port: 8501
+  theme: "dark"
+  refresh_interval: 60  # seconds for live sim

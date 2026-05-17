@@ -1,0 +1,35 @@
+{
+  "project": "AI-Powered Server Scaling Predictor",
+  "trained_at": "2026-05-17T15:20:43.892807",
+  "n_records": 2160,
+  "prophet": {
+    "prophet_mae": 13.85,
+    "prophet_rmse": 18.18,
+    "prophet_mape": 7.07
+  },
+  "lstm": {
+    "lstm_mae": 5.29,
+    "lstm_rmse": 13.7
+  },
+  "anomaly": {
+    "contamination": 0.03,
+    "features": [
+      "cpu_usage_percent",
+      "concurrent_players",
+      "memory_usage_gb",
+      "network_in_mbps",
+      "tick_rate",
+      "player_density",
+      "cpu_per_player",
+      "cpu_spike"
+    ]
+  },
+  "synthetic_params": {
+    "n_days": 90,
+    "freq": "H",
+    "base_players": 120,
+    "max_capacity_per_server": 250,
+    "growth_rate": 0.8,
+    "anomaly_rate": 0.03
+  }
+}
